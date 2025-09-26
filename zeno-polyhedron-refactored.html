@@ -1389,16 +1389,43 @@
       }
 
       /**
+       * Cache for non-bloom objects and dirty flag
+       */
+      _initNonBloomCache() {
+        this._nonBloomObjects = [];
+        this._nonBloomCacheDirty = true;
+      }
+
+      /**
+       * Mark the non-bloom object cache as dirty (call when scene changes)
+       */
+      markNonBloomCacheDirty() {
+        this._nonBloomCacheDirty = true;
+      }
+
+      /**
+       * Update the non-bloom object cache if dirty
+       */
+      _updateNonBloomCache() {
+        if (!this._nonBloomCacheDirty) return;
+        this._nonBloomObjects = [];
+        this.scene.traverse((object) => {
+          if ((!object.isMesh && !object.isLine && !object.isPoints) || object.layers.test(this.bloomLayer)) return;
+          this._nonBloomObjects.push(object);
+        });
+        this._nonBloomCacheDirty = false;
+      }
+
+      /**
        * Temporarily hide non-bloom objects while rendering the bloom pass
        */
       hideNonBloomObjects() {
         this.hiddenObjects.clear();
-        this.scene.traverse((object) => {
-          if (!object.isMesh && !object.isLine && !object.isPoints) return;
-          if (object.layers.test(this.bloomLayer)) return;
+        this._updateNonBloomCache();
+        for (const object of this._nonBloomObjects) {
           this.hiddenObjects.set(object.uuid, object.visible);
           object.visible = false;
-        });
+        }
       }
 
       /**
