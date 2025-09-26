@@ -1281,12 +1281,10 @@
             },
             vertexShader: `
               // For fullscreen quad rendering, set z=0.0 (on near plane) and w=1.0 (homogeneous coordinate)
-              #define FULLSCREEN_QUAD_Z 0.0
-              #define FULLSCREEN_QUAD_W 1.0
               varying vec2 vUv;
               void main() {
                 vUv = uv;
-                gl_Position = vec4(position.xy, FULLSCREEN_QUAD_Z, FULLSCREEN_QUAD_W);
+                gl_Position = vec4(position.xy, 0.0, 1.0);
               }
             `,
             fragmentShader: `
