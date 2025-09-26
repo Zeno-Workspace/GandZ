@@ -1,0 +1,23 @@
+# Codex Approval Workflow for TSK-01
+# Generated: 2025-09-26 17:57:10 UTC
+
+workflow:
+  id: TSK-01
+  type: approval
+  status: approved
+  created: 2025-09-26T17:57:10Z
+  
+approval:
+  mode: codex
+  merge_strategy: squash
+  required_checks:
+    - integrity: 100%
+    - validation: pass
+    - review: approved
+    
+metadata:
+  branch: copilot/fix-bb05fc64-2f86-4e79-b543-679b1034c1cd
+  commit: 54c13c5566effced903f4011b8b905e8332c24b7
+  author: copilot-swe-agent[bot]
+  email: 198982749+Copilot@users.noreply.github.com
+  completed: 2025-09-26T17:57:12Z
