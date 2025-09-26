@@ -1358,9 +1358,11 @@
        */
       updateBloomTextureUniform() {
         if (!this.effects.compositePass || !this.bloomComposer) return;
-        const target = this.bloomComposer.renderTarget2 || this.bloomComposer.renderTarget1;
+        const target = this.bloomComposer.renderTarget2 || this.bloomComposer.renderTarget1 || null;
         if (target) {
           this.effects.compositePass.material.uniforms.bloomTexture.value = target.texture;
+        } else {
+          this.effects.compositePass.material.uniforms.bloomTexture.value = null;
         }
       }
 
