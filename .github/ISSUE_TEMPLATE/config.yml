@@ -1,0 +1,11 @@
+blank_issues_enabled: false
+contact_links:
+  - name: 🗨️ Discussion Forum
+    url: https://github.com/Zeno-Workspace/GandZ/discussions
+    about: Ask questions and discuss ideas about the ZENØ polyhedron system
+  - name: 📚 Documentation
+    url: https://github.com/Zeno-Workspace/GandZ/blob/main/README.md
+    about: Read the project documentation and architecture notes
+  - name: 🧑‍💻 Developer Notes
+    url: https://github.com/Zeno-Workspace/GandZ/blob/main/DEVNOTES.md
+    about: Technical documentation for contributors and developers
