@@ -1432,11 +1432,13 @@
        * Restore visibility after bloom pass
        */
       restoreHiddenObjects() {
-        this.scene.traverse((object) => {
-          if (!this.hiddenObjects.has(object.uuid)) return;
-          object.visible = this.hiddenObjects.get(object.uuid);
-          this.hiddenObjects.delete(object.uuid);
-        });
+        for (const [uuid, wasVisible] of this.hiddenObjects.entries()) {
+          const object = this.scene.getObjectByProperty('uuid', uuid);
+          if (object) {
+            object.visible = wasVisible;
+          }
+        }
+        this.hiddenObjects.clear();
       }
       
       /**
